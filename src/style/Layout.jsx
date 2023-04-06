@@ -3,16 +3,34 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <>
-      <Header />
-      <SContentBox />
-      <Footer />
+      <SOutWrap>
+        <Header />
+        <SContentBox>{children}</SContentBox>
+        <Footer />
+      </SOutWrap>
     </>
   );
 };
 
 export default Layout;
 
-const SContentBox = styled.div``;
+const SOutWrap = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const SContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  height: 100vh;
+  background-color: #eeeeee;
+  width: 80%;
+  justify-content: center;
+  margin: auto;
+`;
