@@ -26,7 +26,7 @@ const SWhole = styled.div`
   background-color: #13253b;
 `;
 const SCenter = styled.div`
-  width: 939px;
+  width: 80%;
   height: 127px;
   margin: auto;
 `;

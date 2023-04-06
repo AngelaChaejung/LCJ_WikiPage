@@ -3,13 +3,12 @@ import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <>
       <SOutWrap>
         <Header />
-
-        <SContentBox />
+        <SContentBox>{children}</SContentBox>
         <Footer />
       </SOutWrap>
     </>
@@ -28,10 +27,10 @@ const SOutWrap = styled.div`
 const SContentBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   height: 100vh;
   background-color: #eeeeee;
-  width: 939px;
+  width: 80%;
   justify-content: center;
   margin: auto;
 `;
