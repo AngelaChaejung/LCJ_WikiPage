@@ -6,13 +6,32 @@ import Footer from "../components/Footer";
 const Layout = () => {
   return (
     <>
-      <Header />
-      <SContentBox />
-      <Footer />
+      <SOutWrap>
+        <Header />
+
+        <SContentBox />
+        <Footer />
+      </SOutWrap>
     </>
   );
 };
 
 export default Layout;
 
-const SContentBox = styled.div``;
+const SOutWrap = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const SContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #eeeeee;
+  width: 939px;
+  justify-content: center;
+  margin: auto;
+`;
