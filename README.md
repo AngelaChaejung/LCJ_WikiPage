@@ -12,6 +12,9 @@ https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468
 - 06-APR : draw draft w/ Figma 🎨
 - 06-APR : file structure setup 🔧
 - 06-APR : Header & Footer CSS complete 🎨
+- 07-APR : Main page CSS, data binding(w/ Json server), pagination(w/MUI Pagination library) complete🎨
+- 07-APR : Detail page CSS, data binding complete🎨
+
 
 ### 기술 스택
 

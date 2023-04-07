@@ -27,10 +27,8 @@ const SOutWrap = styled.div`
 const SContentBox = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   height: 100vh;
   background-color: #eeeeee;
   width: 80%;
-  justify-content: center;
-  margin: auto;
+  margin: 0px auto 0px auto;
 `;
