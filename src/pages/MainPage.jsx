@@ -18,18 +18,11 @@ export default MainPage;
 
 const SBodyDiv = styled.div`
   background-color: #d9d9d9;
-
   width: 90%;
-
   height: auto;
-
-  margin: auto;
-
+  margin: 70px auto 0px auto;
   padding: 30px;
-
   border-radius: 5px;
-
   box-shadow: 3px 3px 3px 3px #cbcbcb;
-
   font-family: "Lato", "Noto Sans KR", sans-serif;
 `;

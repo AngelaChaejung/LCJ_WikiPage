@@ -1,0 +1,9 @@
+{
+  "post": [
+    { "id": "1", "title": "웹페이지가 브라우저에 렌더링되는 과정", "content": "내용1", "date": "2023-03-29" },
+    { "id": "2", "title": "리액트 DOM", "content": "내용2", "date": "2023-03-29" },
+    { "id": "3", "title": "자바스크립트 require와 import의 차이", "content": "내용2", "date": "2023-03-30" },
+    { "id": "4", "title": "this의 동작원리와 용법 정리", "content": "내용2", "date": "2023-04-03" },
+    { "id": "4", "title": "리액트의 state와 props", "content": "내용2", "date": "2023-04-06" }
+  ]
+}
