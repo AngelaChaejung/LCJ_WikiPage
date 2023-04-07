@@ -13,7 +13,7 @@ const DetailContent = () => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [id]);
   console.log(data);
 
   return (
