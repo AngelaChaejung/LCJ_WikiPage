@@ -1,0 +1,15 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "content": "json-server를 배워봅시다."
+    }
+  ],
+
+  "post": [
+    { "title": "제목1", "content": "내용1", "date": "2023-04-07" },
+
+    { "title": "제목2", "content": "내용2", "date": "2023-04-05" }
+  ]
+}
