@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import pencil from "../img/newpostIcon/pencil.svg";
+import Pagination from "@mui/material/Pagination";
 
 const WikiPage = () => {
   const navigate = useNavigate();
@@ -17,10 +18,17 @@ const WikiPage = () => {
     getData();
   }, []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const totalItemsCount = db ? db.length : 0;
+  const currentItems = db?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const handlePageChange = (e, v) => {
+    setCurrentPage(v);
+  };
   return (
     <div>
       <STitleSpan>Global Knowledge Wiki</STitleSpan>
-      <SAddPost onClick={() => navigate(`/newpost`)}>
+      <SAddPost onClick={() => navigate("/newpost")}>
         <SPencilIcon src={pencil} alt="pencil" />
         새로운 wiki 작성하기
       </SAddPost>
@@ -29,12 +37,22 @@ const WikiPage = () => {
           <STitle>제목</STitle> <SDate>작성일</SDate>
         </S1stRow>
 
-        {db?.map((a, i) => (
-          <SContentContainer key={i}>
-            <SContentTitle onClick={() => navigate(`/detail/${a.id}`)}>{a.title}</SContentTitle>{" "}
-            <SContentDate>{a.date}</SContentDate>
-          </SContentContainer>
-        ))}
+        {db &&
+          currentItems.map((a, i) => (
+            <SContentContainer key={i}>
+              <SContentTitle onClick={() => navigate(`/detail/${a.id}`)}>{a.title}</SContentTitle>
+              <SContentDate>{a.date}</SContentDate>
+            </SContentContainer>
+          ))}
+        <SPagenationDiv>
+          <Pagination
+            count={Math.ceil(totalItemsCount / 5)}
+            Page={currentPage}
+            itemsCountPerPage={5}
+            pageRangeDisplayed={5}
+            onChange={handlePageChange}
+          />
+        </SPagenationDiv>
       </SListBox>
     </div>
   );
@@ -60,7 +78,7 @@ const STitleSpan = styled.span`
 
 const SListBox = styled.div`
   width: 100%;
-  height: 400px;
+  height: auto;
   background-color: #fafafa;
   margin-top: 20px;
 `;
@@ -104,4 +122,11 @@ const SContentDate = styled.div`
 `;
 const SPencilIcon = styled.img`
   cursor: pointer;
+`;
+const SPagenationDiv = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 20px;
+  padding-bottom: 20px;
 `;
