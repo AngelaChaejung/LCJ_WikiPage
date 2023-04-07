@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import pencil from "../img/newpostIcon/pencil.svg";
 
 const WikiPage = () => {
-  const [db, setDb] = useState(null);
+  const navigate = useNavigate();
 
+  //JSON서버로 데이터를 받아오는 부분
+  const [db, setDb] = useState(null);
   const getData = async () => {
     const { data } = await axios.get("http://localhost:3001/post");
-
     setDb(data);
   };
   useEffect(() => {
     getData();
   }, []);
-  console.log(db);
+
   return (
     <div>
-      <STitleSpan>Wiki Page</STitleSpan>
-
-      <SAddPost>작성하기</SAddPost>
-
+      <STitleSpan>Global Knowledge Wiki</STitleSpan>
+      <SAddPost onClick={() => navigate(`/newpost`)}>
+        <SPencilIcon src={pencil} alt="pencil" />
+        새로운 wiki 작성하기
+      </SAddPost>
       <SListBox>
         <S1stRow>
           <STitle>제목</STitle> <SDate>작성일</SDate>
@@ -27,7 +31,8 @@ const WikiPage = () => {
 
         {db?.map((a, i) => (
           <SContentContainer key={i}>
-            <SContentTitle>{a.title}</SContentTitle> <SContentDate>{a.date}</SContentDate>
+            <SContentTitle onClick={() => navigate(`/detail/${a.id}`)}>{a.title}</SContentTitle>{" "}
+            <SContentDate>{a.date}</SContentDate>
           </SContentContainer>
         ))}
       </SListBox>
@@ -39,7 +44,10 @@ export default WikiPage;
 
 const SAddPost = styled.div`
   flex-direction: row-reverse;
-  display: flex; ;
+  display: flex;
+  gap: 5px;
+  color: #444444;
+  font-weight: 600;
 `;
 
 const STitleSpan = styled.span`
@@ -86,10 +94,14 @@ const SContentContainer = styled.div`
 
 const SContentTitle = styled.div`
   width: 65%;
-  padding-left: 8px;
+  padding-left: 28px;
+  cursor: pointer;
 `;
 
 const SContentDate = styled.div`
   width: 35%;
   text-align: center;
+`;
+const SPencilIcon = styled.img`
+  cursor: pointer;
 `;
