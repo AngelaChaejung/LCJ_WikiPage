@@ -2,7 +2,7 @@
 
 프론트엔드 개발자 실무 과제
 
-### Design Layout
+### Design Draft
 
 https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468Kdpbao6Oe-0
 
