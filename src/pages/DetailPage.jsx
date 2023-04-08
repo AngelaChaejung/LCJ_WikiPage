@@ -2,10 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import DetailContent from "../components/DetailContent";
 import PrevNextPost from "../components/PrevNextPost";
+import Back from "../components/Back";
 
 const DetailPage = () => {
   return (
     <SBodyDiv>
+      <Back />
       <DetailContent />
       <PrevNextPost />
     </SBodyDiv>

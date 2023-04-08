@@ -28,6 +28,7 @@ const SContentBox = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  min-height: 900px;
   background-color: #eeeeee;
   width: 80%;
   margin: 0px auto 0px auto;

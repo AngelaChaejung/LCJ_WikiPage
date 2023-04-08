@@ -55,7 +55,8 @@ export default Footer;
 
 const SWhole = styled.div`
   width: 80%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   height: 184px;
   background-color: #2d2d2d;
