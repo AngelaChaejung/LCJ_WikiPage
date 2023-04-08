@@ -1,52 +1,58 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import GrayButton from "./GrayButton";
+import GeneralModal from "./GeneralModal";
 
 const EditPost = () => {
   const { id } = useParams();
-  const [data, setData] = useState(null);
+
+  //자동으로 제목 Inputd으로 포커싱되게하기위한 useRef
+  const inputRef = useRef(null);
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [errorModal, setErrorModal] = useState(false);
+  const [completeModal, setCompleteModal] = useState(false);
 
   const getData = async () => {
-    const { data: receivedData } = await axios.get(`http://localhost:3001/post/${id}`);
-    setData(receivedData);
-    setTitle(receivedData.title);
-    setContent(receivedData.content);
+    try {
+      const response = await axios.get(`http://localhost:3001/post/${id}`);
+      setTitle(response.data.title);
+      setContent(response.data.content);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
     getData();
+    inputRef.current.focus();
   }, []);
 
-  const editedPost = {
-    title,
-    content,
-  };
-
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
     if (title && content) {
-      axios
-        .patch(`http://localhost:3001/post/${id}`, editedPost)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      try {
+        await axios.patch(`http://localhost:3001/post/${id}`, { title, content });
+        setCompleteModal(true);
+      } catch (error) {
+        console.error(error);
+      }
     } else {
-      //모달띄우기
+      setErrorModal(true);
     }
   };
   return (
     <div>
+      {errorModal && <GeneralModal setModal={setErrorModal}>제목과 내용을 모두 입력해주세요!</GeneralModal>}
+      {completeModal && <GeneralModal setModal={setCompleteModal}>수정이 완료되었습니다!</GeneralModal>}
       <SNewPostCard>
         <STitleBox>
           <STitleInput
             placeholder="수정하실 제목을 입력해주세요."
+            ref={inputRef}
             type="text"
             value={title}
             onChange={(e) => {

@@ -7,24 +7,35 @@ import Pagination from "@mui/material/Pagination";
 
 const WikiPage = () => {
   const navigate = useNavigate();
-
+  const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postData, setPostData] = useState([]);
   //JSON서버로 데이터를 받아오는 부분
-  const [db, setDb] = useState(null);
+
   const getData = async () => {
     const { data } = await axios.get("http://localhost:3001/post");
-    setDb(data);
+    setPostData(data);
   };
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    if (postData) {
+      //sort()메서드를 이용해 b의 id에서 a의 id를 뺀 결과가 음수면 b를 a보다 우선시하고,
+      //결과가 양수면 a를 b보다 우선시한다. 이를 통해 배열을 내림차순으로 정렬할 수 있다.
+      const sortedData = [...postData].sort((a, b) => b.id - a.id);
+      setPosts(sortedData);
+    }
+  }, [postData]);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  //페이지네이션기능을 위한 변수들과 함수
   const itemsPerPage = 5;
-  const totalItemsCount = db ? db.length : 0;
-  const currentItems = db?.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
-  const handlePageChange = (e, v) => {
-    setCurrentPage(v);
+  const totalItemsCount = postData ? postData.length : 0;
+  const pageCount = Math.ceil(totalItemsCount / itemsPerPage);
+  const handlePageChange = (e, pageNumber) => {
+    setCurrentPage(pageNumber);
   };
+
   return (
     <div>
       <STitleSpan>Global Knowledge Wiki</STitleSpan>
@@ -34,11 +45,12 @@ const WikiPage = () => {
       </SAddPost>
       <SListBox>
         <S1stRow>
-          <STitle>제목</STitle> <SDate>작성일</SDate>
+          <STitle>제목 </STitle>
+          <SDate>작성일</SDate>
         </S1stRow>
 
-        {db &&
-          currentItems.map((a, i) => (
+        {postData &&
+          posts.map((a, i) => (
             <SContentContainer key={i}>
               <SContentTitle onClick={() => navigate(`/detail/${a.id}`)}>{a.title}</SContentTitle>
               <SContentDate>{a.date}</SContentDate>
@@ -46,9 +58,9 @@ const WikiPage = () => {
           ))}
         <SPagenationDiv>
           <Pagination
-            count={Math.ceil(totalItemsCount / 5)}
-            Page={currentPage}
-            itemsCountPerPage={5}
+            count={pageCount}
+            page={currentPage}
+            itemsCountPerPage={itemsPerPage}
             pageRangeDisplayed={5}
             onChange={handlePageChange}
           />
@@ -75,7 +87,6 @@ const STitleSpan = styled.span`
   margin-left: 15px;
   text-shadow: 4px 4px 4px #101b2d29;
 `;
-
 const SListBox = styled.div`
   width: 100%;
   height: auto;
