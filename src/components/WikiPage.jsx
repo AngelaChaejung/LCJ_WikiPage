@@ -9,8 +9,9 @@ const WikiPage = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [postData, setPostData] = useState([]);
   //JSON서버로 데이터를 받아오는 부분
-  const [postData, setPostData] = useState(null);
+
   const getData = async () => {
     const { data } = await axios.get("http://localhost:3001/post");
     setPostData(data);
