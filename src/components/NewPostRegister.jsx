@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import GrayButton from "./GrayButton";
 import axios from "axios";
@@ -9,28 +9,23 @@ const NewPostRegister = () => {
   const [content, setContent] = useState("");
   const [errorModal, setErrorModal] = useState(false);
   const [completeModal, setCompleteModal] = useState(false);
+
   const today = new Date();
   const date = new Date(+today + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, "").split(" ")[0];
-  const onSubmitHandler = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (title && content) {
-      axios
-        .post("http://localhost:3001/post", newPost)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      setCompleteModal(true);
+      const newPost = { title, content, date };
+      try {
+        await axios.post("http://localhost:3001/post", newPost);
+        setCompleteModal(true);
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       setErrorModal(true);
     }
-  };
-  const newPost = {
-    title,
-    content,
-    date: date,
   };
 
   return (
@@ -58,7 +53,7 @@ const NewPostRegister = () => {
           }}
         />
       </SNewPostCard>
-      <SButtonDiv onClick={onSubmitHandler}>
+      <SButtonDiv onClick={handleSubmit}>
         <GrayButton>완료</GrayButton>
       </SButtonDiv>
     </>
