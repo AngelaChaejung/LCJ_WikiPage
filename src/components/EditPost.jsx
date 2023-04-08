@@ -1,15 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import GrayButton from "./GrayButton";
+import GeneralModal from "./GeneralModal";
 
 const EditPost = () => {
   const { id } = useParams();
+  const inputRef = useRef(null);
   const [data, setData] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-
+  const [errorModal, setErrorModal] = useState(false);
+  const [completeModal, setCompleteModal] = useState(false);
   const getData = async () => {
     const { data: receivedData } = await axios.get(`http://localhost:3001/post/${id}`);
     setData(receivedData);
@@ -19,6 +22,7 @@ const EditPost = () => {
 
   useEffect(() => {
     getData();
+    inputRef.current.focus();
   }, []);
 
   const editedPost = {
@@ -31,22 +35,24 @@ const EditPost = () => {
     if (title && content) {
       axios
         .patch(`http://localhost:3001/post/${id}`, editedPost)
-        .then(function (response) {
-          console.log(response);
-        })
+        .then(function (response) {})
         .catch(function (error) {
           console.log(error);
         });
+      setCompleteModal(true);
     } else {
-      //모달띄우기
+      setErrorModal(true);
     }
   };
   return (
     <div>
       <SNewPostCard>
+        {errorModal && <GeneralModal setModal={setErrorModal}>제목과 내용을 모두 입력해주세요!</GeneralModal>}
+        {completeModal && <GeneralModal setModal={setCompleteModal}>수정이 완료되었습니다!</GeneralModal>}
         <STitleBox>
           <STitleInput
             placeholder="수정하실 제목을 입력해주세요."
+            ref={inputRef}
             type="text"
             value={title}
             onChange={(e) => {

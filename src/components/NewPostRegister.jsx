@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import GrayButton from "./GrayButton";
 import axios from "axios";
@@ -14,15 +14,9 @@ const NewPostRegister = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (title && content) {
-      axios
-        .post("http://localhost:3001/post", newPost)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      setCompleteModal(true);
+      axios.post("http://localhost:3001/post", newPost).catch(function (error) {
+        console.log(error);
+      });
     } else {
       setErrorModal(true);
     }
