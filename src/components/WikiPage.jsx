@@ -13,7 +13,7 @@ const WikiPage = () => {
   //JSON서버로 데이터를 받아오는 부분
 
   const getData = async () => {
-    const { data } = await axios.get("http://localhost:3001/post");
+    const { data } = await axios.get("http://localhost:3001/post?_sort=id&_order=desc");
     setPostData(data);
   };
   useEffect(() => {
@@ -50,8 +50,8 @@ const WikiPage = () => {
         </S1stRow>
 
         {postData &&
-          posts.map((a, i) => (
-            <SContentContainer key={i}>
+          postData.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((a) => (
+            <SContentContainer key={a.id}>
               <SContentTitle onClick={() => navigate(`/detail/${a.id}`)}>{a.title}</SContentTitle>
               <SContentDate>{a.date}</SContentDate>
             </SContentContainer>
