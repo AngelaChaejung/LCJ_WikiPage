@@ -1,41 +1,52 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import GrayButton from "./GrayButton";
-import axios from "axios";
 
-const NewPostRegister = () => {
+const EditPost = () => {
+  const { id } = useParams();
+  const [data, setData] = useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const today = new Date();
-  const date = new Date(+today + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, "").split(" ")[0];
+
+  const getData = async () => {
+    const { data: receivedData } = await axios.get(`http://localhost:3001/post/${id}`);
+    setData(receivedData);
+    setTitle(receivedData.title);
+    setContent(receivedData.content);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const editedPost = {
+    title,
+    content,
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (title && content) {
       axios
-        .post("http://localhost:3001/post", newPost)
+        .patch(`http://localhost:3001/post/${id}`, editedPost)
         .then(function (response) {
           console.log(response);
         })
         .catch(function (error) {
           console.log(error);
         });
-      console.log(newPost);
     } else {
       //모달띄우기
     }
   };
-  const newPost = {
-    title,
-    content,
-    date: date,
-  };
-
   return (
-    <>
+    <div>
       <SNewPostCard>
         <STitleBox>
           <STitleInput
-            placeholder="제목을 입력해주세요."
+            placeholder="수정하실 제목을 입력해주세요."
             type="text"
             value={title}
             onChange={(e) => {
@@ -44,7 +55,7 @@ const NewPostRegister = () => {
           />
         </STitleBox>
         <SContent
-          placeholder="내용을 입력해주세요."
+          placeholder="수정하실 내용을 입력해주세요."
           maxLength="1000"
           type="text"
           value={content}
@@ -54,13 +65,13 @@ const NewPostRegister = () => {
         />
       </SNewPostCard>
       <SButtonDiv onClick={onSubmitHandler}>
-        <GrayButton>완료</GrayButton>
+        <GrayButton>저장하기</GrayButton>
       </SButtonDiv>
-    </>
+    </div>
   );
 };
 
-export default NewPostRegister;
+export default EditPost;
 const SNewPostCard = styled.div`
   width: 95%;
   height: auto;

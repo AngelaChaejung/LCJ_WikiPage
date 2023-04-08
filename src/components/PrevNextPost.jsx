@@ -92,6 +92,9 @@ const STitle = styled.span`
   font-size: 18px;
   margin: 30px;
   cursor: pointer;
+  &:hover {
+    font-weight: 600;
+  }
 `;
 const SContent = styled.span`
   font-size: 15px;

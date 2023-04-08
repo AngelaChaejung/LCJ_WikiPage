@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import kebabButton from "../img/detailkebabIcon/Group.svg";
 
 const DetailContent = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const navigate = useNavigate();
   const getData = async () => {
     const { data } = await axios.get(`http://localhost:3001/post/${id}`);
     setData(data);
@@ -21,9 +21,10 @@ const DetailContent = () => {
       <SDetailCard>
         <STitleBox>
           <STitle>{data?.title}</STitle>
-          <SIcon src={kebabButton} alt="kebabIcon" />
         </STitleBox>
-        <SDate>{data?.date}</SDate>
+        <SDate>
+          {data?.date} <SEditButton onClick={() => navigate(`/editpost/${id}`)}> 수정하기</SEditButton>
+        </SDate>
         <SContent>{data?.content}</SContent>
       </SDetailCard>
     </>
@@ -63,9 +64,15 @@ const SDate = styled.div`
   margin-left: 10px;
   margin-right: 10px;
   border-bottom: solid 1px #a1a1a1;
+  flex-direction: row;
+  display: flex;
 `;
-const SIcon = styled.img`
-  width: 6px;
-  margin-right: 25px;
+
+const SEditButton = styled.div`
+  margin-left: 20px;
   cursor: pointer;
+  &:hover {
+    color: gray;
+    font-weight: 500;
+  }
 `;
