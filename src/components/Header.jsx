@@ -33,12 +33,9 @@ const SCenter = styled.div`
   margin: auto;
 `;
 const SLogo = styled.img`
-  z-index: 150;
   position: absolute;
   padding-left: 68px;
   padding-top: 23px;
   cursor: pointer;
 `;
-const SUnderLogo = styled.img`
-  z-index: 100;
-`;
+const SUnderLogo = styled.img``;

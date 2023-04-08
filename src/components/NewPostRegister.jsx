@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import GrayButton from "./GrayButton";
 import axios from "axios";
+import GeneralModal from "./GeneralModal";
 
 const NewPostRegister = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [errorModal, setErrorModal] = useState(false);
+  const [completeModal, setCompleteModal] = useState(false);
   const today = new Date();
   const date = new Date(+today + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, "").split(" ")[0];
   const onSubmitHandler = (e) => {
@@ -19,9 +22,9 @@ const NewPostRegister = () => {
         .catch(function (error) {
           console.log(error);
         });
-      console.log(newPost);
+      setCompleteModal(true);
     } else {
-      //모달띄우기
+      setErrorModal(true);
     }
   };
   const newPost = {
@@ -33,6 +36,8 @@ const NewPostRegister = () => {
   return (
     <>
       <SNewPostCard>
+        {errorModal && <GeneralModal setModal={setErrorModal}>제목과 내용을 모두 입력해주세요!</GeneralModal>}
+        {completeModal && <GeneralModal setModal={setCompleteModal}>새로운 위키가 등록되었습니다!</GeneralModal>}
         <STitleBox>
           <STitleInput
             placeholder="제목을 입력해주세요."
