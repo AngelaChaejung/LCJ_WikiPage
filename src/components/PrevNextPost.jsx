@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const PrevNextPost = () => {
   const { id } = useParams();
@@ -48,7 +50,9 @@ const PrevNextPost = () => {
         {prev && <STitle onClick={() => navigate(`/detail/${prev.id}`)}>{prev.title}</STitle>}
         {!prev && <SContent>이전 글이 없습니다.</SContent>}
         <br />
-        <SContent>{prevContent}</SContent>
+        <SContent>
+          <ReactMarkdown plugins={[remarkGfm]}>{prevContent}</ReactMarkdown>
+        </SContent>
       </SPrevPost>
       <SNextPost>
         <SPrevNextdiv>
@@ -57,7 +61,9 @@ const PrevNextPost = () => {
         {next && <STitle onClick={() => navigate(`/detail/${next?.id}`)}>{next?.title}</STitle>}
         {!next && <SContent>다음 글이 없습니다.</SContent>}
         <br />
-        <SContent>{nextContent}</SContent>
+        <SContent>
+          <ReactMarkdown plugins={[remarkGfm]}>{nextContent}</ReactMarkdown>
+        </SContent>
       </SNextPost>
     </SPrevNexCard>
   );
@@ -96,9 +102,8 @@ const STitle = styled.span`
     font-weight: 600;
   }
 `;
-const SContent = styled.span`
+const SContent = styled.div`
   font-size: 15px;
-  margin: 15px;
   color: #838383;
-  margin: 30px;
+  margin: 10px 30px 20px 30px;
 `;

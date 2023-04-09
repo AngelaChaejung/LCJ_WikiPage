@@ -39,20 +39,20 @@
     {
       "id": "7",
       "title": "useRef가 필요한 상황",
-      "content": "useRef가 필요한 상황은 크게 다섯가지가 있습니다. 폼요소에 자동으로 초점을 맞출 때, 이전 상태를 저장할 때, 애니메이션을 컨트롤할 때, DOM요소를 조작할 때, 그리고 외부라이브러리와 상호작용할 때입니다. 다음 시간에 좀 더 자세히 알아보겠습니다. ",
+      "content": "useRef가 필요한 상황은 크게 다섯가지가 있습니다. 폼요소에 자동으로 초점을 맞출 때, 이전 상태를 저장할 때, 애니메이션을 컨트롤할 때, DOM요소를 조작할 때, 그리고 외부라이브러리와 상호작용할 때입니다. 다음 시간에 좀 더 자세히 알아보겠습니다.  추가테스트",
       "date": "2023-04-06"
     },
     {
       "id": "8",
       "title": "리액트의 state와 props",
-      "content": "내용2",
+      "content": "\n**object타입을 명시적으로 정해주는 방법**\n\n\n```\nlet a: number[] = [1, 2];\n\nlet b: string[] = [\"hi\"];\n\nlet c: boolean[] = [true];\n```\n\n콜론이용, 타입적어주면 됨\n\n그리고 ts가 타입을 추론하게",
       "date": "2023-04-06"
     },
     {
-      "title": "추가테스트",
-      "content": "모달 잘 뜨겟지?",
+      "title": "마크다운으로 작성이 가능합니다.",
+      "content": "다음을 참고하여 마크다운으로 게시글을 작성하시면 됩니다.\n\n코드를 입력하실 수 있으며, \n\n```\nfunction Example() {\n\tconst [a, setA] = useState(true);\n\tuseEffect(() => {\n\t\tconst timer = setTimeout(() => setA(false), 3000);\n\t\treturn () => {\n\t\t\tclearTimeout(timer);\n\t\t//타이머 제거하는 함수\n\t\t};\n\t}, []);\n\treturn <div>{a && <Popup>3초 내 구매하면 완쁠완 혜택!</Popup>}</div>;\n}\n```\n\n**볼드체** __볼드체__\n\n*이탤릭체*  _이탤릭체_\n\n순서가 있는 리스트는 1. 항목, 순서가 없는 리스트는 - 항목 혹은 * 항목\n1. 일\n2. 이\n3. 삼\n4. 사\n5. 오\n\n\n- 순서가 없는\n- 항목은 - 대쉬를 이용해 표현합니다.\n\n",
       "date": "2023-04-09",
-      "id": "QGgWZiQ"
+      "id": "9"
     }
   ]
 }

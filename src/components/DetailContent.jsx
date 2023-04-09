@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const DetailContent = () => {
   const { id } = useParams();
@@ -25,7 +27,9 @@ const DetailContent = () => {
         <SDate>
           {data?.date} <SEditButton onClick={() => navigate(`/editpost/${id}`)}> 수정하기</SEditButton>
         </SDate>
-        <SContent>{data?.content}</SContent>
+        <SContent>
+          <ReactMarkdown plugins={[remarkGfm]}>{data?.content}</ReactMarkdown>
+        </SContent>
       </SDetailCard>
     </>
   );
@@ -53,7 +57,7 @@ const STitle = styled.span`
 `;
 const SContent = styled.div`
   font-size: 16px;
-  padding: 20px 20px;
+  padding: 30px;
 `;
 const SDate = styled.div`
   font-size: 13px;
