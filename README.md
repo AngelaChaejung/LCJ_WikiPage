@@ -38,11 +38,11 @@ https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468
 
 ### 기술적 의사결정
 
-1. redux를 이용하지 않은 추가, 수정기능
-  redux의 이용을 고려하였으나, 프로젝트 규모가 크지 않고 상태 변경 로직이 복잡하지 않아 useState를 주로 이용해 기능을 간단하게 구현하였습니다. 
+1. **redux를 이용하지 않은 추가, 수정기능**
+  : redux의 이용을 고려하였으나, 프로젝트 규모가 크지 않고 상태 변경 로직이 복잡하지 않아 useState를 주로 이용해 기능을 간단하게 구현하였습니다. 
   
-2. useState를 이용한 최신순 정렬기능
-  useReducer로 먼저 기능을 완성했으나, useReducer의 특성상 코드가 길고 가독성이 떨어져 useState로 변경하였습니다. 
+2. **useState를 이용한 최신순 정렬기능**
+  : useReducer로 먼저 기능을 완성했으나, useReducer의 특성상 코드가 길고 가독성이 떨어져 useState로 변경하였습니다. 
 
 
 
