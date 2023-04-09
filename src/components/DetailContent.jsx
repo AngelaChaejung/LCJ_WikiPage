@@ -1,52 +1,57 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
+import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import remarkAutolinkHeadings from "remark-autolink-headings";
 import remarkSlug from "remark-slug";
+import remarkAutolinkHeadings from "remark-autolink-headings";
+import styled from "styled-components";
 
-const DetailContent = () => {
-  const something = null;
+function DetailContent() {
   const { id } = useParams();
-  const [data, setData] = useState(null);
-  const [content, setContent] = useState(null);
+  const [post, setPost] = useState({});
   const [titleArr, setTitleArr] = useState([]);
+
   const navigate = useNavigate();
 
-  const getData = async () => {
-    const { data } = await axios.get(`http://localhost:3001/post/${id}`);
-    setData(data);
-    setContent(data?.content);
-  };
-
-  const getWholeData = async () => {
-    const { data } = await axios.get(`http://localhost:3001/post`);
-    const a = data?.map((e) => e.title);
-    setTitleArr(a);
-  };
-
   useEffect(() => {
-    getData();
+    async function fetchData() {
+      try {
+        const { data } = await axios.get(`http://localhost:3001/post/${id}`);
+        setPost(data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-    getWholeData();
+    async function fetchWholeData() {
+      try {
+        const { data } = await axios.get("http://localhost:3001/post");
+        const titles = data?.map((post) => post.title);
+        setTitleArr(titles);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchData();
+    fetchWholeData();
   }, [id]);
-  console.log(isTitleIncluded(titleArr, content));
-  console.log("contentStr", content);
-  console.log("titleArr", titleArr);
 
-  function convert(str) {
-    return "[" + str + "]" + "(" + something + ")";
+  function convertTitle(title, index) {
+    const converted = `[${title}](/detail/${index + 1})`;
+    return converted;
   }
 
   function isTitleIncluded(titleArr, content) {
-    for (let i = 0; i < titleArr?.length; i++) {
-      if (content?.includes(titleArr[i])) {
-        return convert(titleArr[i]);
+    let modifiedContent = content;
+    titleArr?.forEach((title, index) => {
+      const isContained = content?.includes(title);
+      if (isContained) {
+        modifiedContent = modifiedContent.replace(title, convertTitle(title, index));
       }
-    }
-    return false;
+    });
+    return modifiedContent;
   }
 
   return (
@@ -54,21 +59,21 @@ const DetailContent = () => {
       <SDetailCard>
         <STitleBox>
           <STitle>
-            <h4>{data?.title}</h4>
+            <h4>{post?.title}</h4>
           </STitle>
         </STitleBox>
         <SDate>
-          {data?.date} <SEditButton onClick={() => navigate(`/editpost/${id}`)}> 수정하기</SEditButton>
+          {post?.date} <SEditButton onClick={() => navigate(`/editpost/${id}`)}> 수정하기</SEditButton>
         </SDate>
         <SContent>
           <ReactMarkdown plugins={[remarkGfm, remarkSlug, [remarkAutolinkHeadings, { behavior: "wrap" }]]}>
-            {data?.content}
+            {isTitleIncluded(titleArr, post?.content)}
           </ReactMarkdown>
         </SContent>
       </SDetailCard>
     </>
   );
-};
+}
 
 export default DetailContent;
 
