@@ -2,6 +2,9 @@
 
 프론트엔드 개발자 실무 과제
 
+## `yarn start`명령어를 이용해 리액트를 실행해주시고,
+## `node server`명령어를 이용해 JSON 서버에 연결해주시면 테스트가 가능합니다.
+
 ### Design Draft
 
 https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468Kdpbao6Oe-0
