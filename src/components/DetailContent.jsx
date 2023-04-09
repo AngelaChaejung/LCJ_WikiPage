@@ -4,7 +4,6 @@ import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkSlug from "remark-slug";
-import remarkAutolinkHeadings from "remark-autolink-headings";
 import styled from "styled-components";
 
 function DetailContent() {
@@ -66,9 +65,7 @@ function DetailContent() {
           {post?.date} <SEditButton onClick={() => navigate(`/editpost/${id}`)}> 수정하기</SEditButton>
         </SDate>
         <SContent>
-          <ReactMarkdown plugins={[remarkGfm, remarkSlug, [remarkAutolinkHeadings, { behavior: "wrap" }]]}>
-            {isTitleIncluded(titleArr, post?.content)}
-          </ReactMarkdown>
+          <ReactMarkdown plugins={[remarkGfm, remarkSlug]}>{isTitleIncluded(titleArr, post?.content)}</ReactMarkdown>
         </SContent>
       </SDetailCard>
     </>
