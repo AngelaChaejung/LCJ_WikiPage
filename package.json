@@ -22,7 +22,9 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "5.0.1",
     "react-syntax-highlighter": "^15.5.0",
+    "remark-autolink-headings": "^7.0.1",
     "remark-gfm": "^3.0.1",
+    "remark-slug": "^7.0.1",
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.0"
   },

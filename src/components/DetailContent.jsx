@@ -4,31 +4,66 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkAutolinkHeadings from "remark-autolink-headings";
+import remarkSlug from "remark-slug";
 
 const DetailContent = () => {
+  const something = null;
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const [content, setContent] = useState(null);
+  const [titleArr, setTitleArr] = useState([]);
   const navigate = useNavigate();
+
   const getData = async () => {
     const { data } = await axios.get(`http://localhost:3001/post/${id}`);
     setData(data);
+    setContent(data?.content);
   };
+
+  const getWholeData = async () => {
+    const { data } = await axios.get(`http://localhost:3001/post`);
+    const a = data?.map((e) => e.title);
+    setTitleArr(a);
+  };
+
   useEffect(() => {
     getData();
+
+    getWholeData();
   }, [id]);
-  console.log(data);
+  console.log(isTitleIncluded(titleArr, content));
+  console.log("contentStr", content);
+  console.log("titleArr", titleArr);
+
+  function convert(str) {
+    return "[" + str + "]" + "(" + something + ")";
+  }
+
+  function isTitleIncluded(titleArr, content) {
+    for (let i = 0; i < titleArr?.length; i++) {
+      if (content?.includes(titleArr[i])) {
+        return convert(titleArr[i]);
+      }
+    }
+    return false;
+  }
 
   return (
     <>
       <SDetailCard>
         <STitleBox>
-          <STitle>{data?.title}</STitle>
+          <STitle>
+            <h4>{data?.title}</h4>
+          </STitle>
         </STitleBox>
         <SDate>
           {data?.date} <SEditButton onClick={() => navigate(`/editpost/${id}`)}> 수정하기</SEditButton>
         </SDate>
         <SContent>
-          <ReactMarkdown plugins={[remarkGfm]}>{data?.content}</ReactMarkdown>
+          <ReactMarkdown plugins={[remarkGfm, remarkSlug, [remarkAutolinkHeadings, { behavior: "wrap" }]]}>
+            {data?.content}
+          </ReactMarkdown>
         </SContent>
       </SDetailCard>
     </>
@@ -52,7 +87,7 @@ const STitleBox = styled.div`
   justify-content: space-between;
   display: flex;
 `;
-const STitle = styled.span`
+const STitle = styled.h2`
   font-size: 21px;
 `;
 const SContent = styled.div`
