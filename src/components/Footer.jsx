@@ -58,6 +58,7 @@ const SWhole = styled.div`
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  bottom: 0;
   height: 184px;
   background-color: #2d2d2d;
   padding: 30px;

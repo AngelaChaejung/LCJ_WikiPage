@@ -60,7 +60,7 @@ const WikiPage = () => {
           <Pagination
             count={pageCount}
             page={currentPage}
-            itemsCountPerPage={itemsPerPage}
+            itemscountperpage={itemsPerPage}
             pageRangeDisplayed={5}
             onChange={handlePageChange}
           />

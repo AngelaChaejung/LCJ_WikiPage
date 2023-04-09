@@ -95,6 +95,7 @@ const SContent = styled.textarea`
   border: none;
   white-space: pre-line;
   word-wrap: break-word;
+  padding: 30px;
 `;
 const SButtonDiv = styled.div`
   padding-left: 30px;
