@@ -1,10 +1,12 @@
 # LeeChaeJung_WikiPage
 
-프론트엔드 개발자 실무 과제
+### 프론트엔드 개발자 실무 과제
 
-### `yarn start`명령어를 이용해 리액트를 실행해주시고,
-### `node server`명령어를 이용해 JSON 서버에 연결해주시면 테스트가 가능합니다.
+안녕하세요! 과제물을 테스트해보기 위해선, 
+### 먼저, `$yarn start`명령어를 이용해 리액트를 실행해주시고,
+### `$node server`명령어를 이용해 JSON 서버에 연결해주시면 테스트가 가능합니다.
 
+---
 ### Design Draft
 
 https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468Kdpbao6Oe-0
@@ -20,11 +22,14 @@ https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468
 - 08-APR : 게시글 추가 기능구현. 에러처리 및 등록 성공시 modal띄우기 작업 ✨
 - 08-APR : 게시글 수정 기능구현. 에러처리 및 수정 완료 modal띄우기 작업 ✨
 - 08-APR : sorting 최신순으로 구현 완료
-
+- 09-APR : 게시글에 마크다운 적용 (react-markdown라이브러리 이용)✨
+- 09-APR : 게시글 내용에 다른 게시글의 제목이 포함되면 자동으로 링크를 생성하는 기능 구현 ✨
+- 09-APR : 과제물 최종 제출
 
 ### 기술 스택 & 라이브러리
 
-<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/Redux-764ABC?style=flat&logo=Redux&logoColor=white"/> <img src="https://img.shields.io/badge/styled-components-DB7093?style=flat&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/MUI-007FFF?style=flat&logo=MUI&logoColor=white"/> <img src="https://img.shields.io/badge/eslint-4B32C3?style=flat&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/prettier-F7B93E?style=flat&logo=prettier&logoColor=white"/> 
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/Redux-764ABC?style=flat&logo=Redux&logoColor=white"/> <img src="https://img.shields.io/badge/styled-components-DB7093?style=flat&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/MUI-007FFF?style=flat&logo=MUI&logoColor=white"/> <img src="https://img.shields.io/badge/eslint-4B32C3?style=flat&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/prettier-F7B93E?style=flat&logo=prettier&logoColor=white"/>
+
 
 ### 짧은 회고
 - 06-APR : 프로젝트를 혼자서 시작하려니 조금 막막해 draft부터 그리고 파일구조를 정리했다. 디자이너님과 작업할 때 배웠던 Figma기능들을 이용해 편하게 draft를 그릴 수 있었고 아이콘을 export해서 사용할 수 있었다. 디자인을 어떻게 그릴지 고민하다가 global knowledge의 홈페이지를 모티브로 로고와 디자인을 활용해 적용해보았다. 
