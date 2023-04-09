@@ -27,7 +27,7 @@ const SOutWrap = styled.div`
 const SContentBox = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: auto;
   min-height: 900px;
   background-color: #eeeeee;
   width: 80%;
