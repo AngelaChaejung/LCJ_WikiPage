@@ -30,7 +30,7 @@ https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468
 
 <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/styled-components-DB7093?style=flat&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/Axios-5A29E4?style=flat&logo=Axios&logoColor=white"/> <img src="https://img.shields.io/badge/MUI-007FFF?style=flat&logo=MUI&logoColor=white"/> <img src="https://img.shields.io/badge/eslint-4B32C3?style=flat&logo=eslint&logoColor=white"/> <img src="https://img.shields.io/badge/prettier-F7B93E?style=flat&logo=prettier&logoColor=white"/>
 
-<img width="600" alt="architecture" src="https://user-images.githubusercontent.com/120077192/230768588-8c9e22c9-4aff-46e5-9768-241838f18863.png">
+<img width="600" alt="architecture" src="https://user-images.githubusercontent.com/120077192/230768779-821d5016-26d1-4eaa-ba7b-aa09d265c171.jpg">
 
 
 
