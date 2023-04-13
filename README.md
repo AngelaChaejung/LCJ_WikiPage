@@ -19,7 +19,8 @@ https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468
 - `해결방법` : JSON서버로 새 글을 작성하여 POST 할 때 아이디값을 매번 기존 데이터의 마지막 아이디+1로 생성하여 아이디가 오름차순으로 유지되게 수정. 
             아이디값을 수동으로 할당함으로써 게시글의 정렬과 링크 동작문제점을 모두 해결
             
-            ```const newId = posts.length > 0 ? posts[posts.length - 1].id * 1 + 1 : 1;```
+            const newId = posts.length > 0 ? posts[posts.length - 1].id * 1 + 1 : 1 
+            const newPost = { title, content, date, id: newId }
 
 
 ### 진행 과정
