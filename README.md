@@ -10,7 +10,8 @@
 
 https://www.figma.com/file/Vt0Jc4kWNcRDqjj4q15yGf/Untitled?node-id=0-1&t=FR37468Kdpbao6Oe-0
 
-### Trouble Shooting
+
+### 💥Trouble Shooting
 
 #### 뒤죽박죽으로 게시글이 올라가는 현상 & 링크 오류
 - `원인` : JSON 서버로 id값을 할당하지 않고 POST시에 자동으로 생성되지만 이는 항상 오름차순의 숫자가 아닌 랜덤값이므로,
