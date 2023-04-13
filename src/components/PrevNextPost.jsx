@@ -40,7 +40,7 @@ const PrevNextPost = () => {
     getPrevData();
     getNextData();
   }, [id]);
-  console.log(prev);
+
   return (
     <SPrevNexCard>
       <SPrevPost>
